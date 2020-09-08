@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>IExpress.Pagamentos.Domain</AssemblyName>
+    <RootNamespace>IExpress.Pagamentos.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotnet-framework-sonarscanner" Version="4.10.0" />
+    <PackageReference Include="MSBuild.SonarQube.Runner.Tool" Version="4.8.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.12.0.21095">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IExpress.Core\IExpress.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
+</Project>

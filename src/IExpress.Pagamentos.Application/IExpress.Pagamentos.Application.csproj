@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>IExpress.Pagamentos.Application</AssemblyName>
+    <RootNamespace>IExpress.Pagamentos.Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="dotnet-framework-sonarscanner" Version="4.10.0" />
+    <PackageReference Include="MSBuild.SonarQube.Runner.Tool" Version="4.8.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.12.0.21095">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IExpress.Pagamentos.AntiCorruption\IExpress.Pagamentos.AntiCorruption.csproj" />
+    <ProjectReference Include="..\IExpress.Pagamentos.Domain\IExpress.Pagamentos.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
