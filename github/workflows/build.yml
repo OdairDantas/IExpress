@@ -40,7 +40,5 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"OdairDantas_IExpress" /o:"odairdantas" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           
-      dotnet restore 
-      dotnet build --configuration Release --no-restore
-       dotnet test --no-restore --verbosity normal
+      dotnet build ".\src\IExpress.sln"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}
