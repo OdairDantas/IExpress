@@ -1,10 +1,9 @@
-﻿using IExpress.Core.DomainObjects;
-using IExpress.Core.ValueObjects;
+﻿using IExpress.Core.ValueObjects;
 using System;
 
 namespace IExpress.Pagamentos.Domain.DomainObjects
 {
-    public class PagamentoCartao : Pagamento , IAggregateRoot
+    public class PagamentoCartao : Pagamento
     {
         public PagamentoCartao(Guid pedidoId, decimal valor, Cartao cartao) : base(pedidoId, valor)
         {

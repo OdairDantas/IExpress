@@ -1,6 +1,4 @@
-﻿using IExpress.Core.Data;
-using IExpress.Core.DomainObjects;
-using IExpress.Pagamentos.Infrastructure.Data.Contexts;
+﻿using IExpress.Core.DomainObjects;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace IExpress.Pagamentos.Infrastructure.Data.Repositories
+namespace IExpress.Core.Data
 {
     public abstract class Repository<T> : IRepository<T> where T : Entity, IAggregateRoot
     {

@@ -1,25 +1,27 @@
 ﻿using IExpress.Core.Communication.Mediator;
-using IExpress.Core.Data;
+using IExpress.Core.Data.Extensions;
 using IExpress.Core.Messages;
-using IExpress.Pagamentos.Infrastructure.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
+namespace IExpress.Core.Data
 {
     public class BaseDbContext : DbContext, IUnitOfWork
     {
         private readonly IMediatorHandler _mediator;
+        private string _connectionString { get; set; }
 
         public BaseDbContext()
         {
 
         }
 
-        public BaseDbContext(DbContextOptions options, IMediatorHandler mediator ) : base(options)
+        public BaseDbContext(string connectionString, DbContextOptions options, IMediatorHandler mediator) : base(options)
         {
             _mediator = mediator;
+            _connectionString = connectionString;
         }
 
         public virtual async Task<bool> Commit()
@@ -39,5 +41,26 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
             base.OnModelCreating(modelBuilder);
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
+            {
+                optionsBuilder
+                    .UseSqlServer
+                    (_connectionString,
+                    p => p.
+                    EnableRetryOnFailure
+                    (
+                        maxRetryCount: 3,
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorNumbersToAdd: null
+                     )
+                    .MigrationsHistoryTable("Migracoes")
+                    );
+            }
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
     }
 }

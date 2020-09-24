@@ -1,10 +1,9 @@
 ﻿using IExpress.Core.Communication.Mediator;
 using IExpress.Core.DomainObjects;
-using IExpress.Pagamentos.Infrastructure.Data.Contexts;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IExpress.Pagamentos.Infrastructure.Data.Extensions
+namespace IExpress.Core.Data.Extensions
 {
     public static class MediatorExtension
     {

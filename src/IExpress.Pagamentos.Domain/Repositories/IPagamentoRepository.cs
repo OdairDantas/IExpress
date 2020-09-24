@@ -3,7 +3,7 @@ using IExpress.Pagamentos.Domain.DomainObjects;
 
 namespace IExpress.Pagamentos.Domain.Repositories
 {
-    public interface IPagamentoCartaoRepository : IRepository<PagamentoCartao>
+    public interface IPagamentoRepository : IRepository<Pagamento>
     {
 
         void AdicionarTransacao(Transacao transacao);

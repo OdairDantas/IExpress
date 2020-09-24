@@ -4,6 +4,7 @@ using IExpress.Pagamentos.Domain.DomainObjects;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using IExpress.Core.Data;
 
 namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
 {
@@ -16,7 +17,7 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
         {
 
         }
-        public PagamentoContext(DbContextOptions<PagamentoContext> options, IMediatorHandler mediator): base(options, mediator)
+        public PagamentoContext(DbContextOptions<PagamentoContext> options, IMediatorHandler mediator): base("Server=(localdb)\\mssqllocaldb;Database=IExpress;Trusted_Connection=true;",options, mediator)
         {
             _mediator = mediator;
         }
@@ -42,16 +43,7 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
 
             return await base.Commit();
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                    .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=IExpress;Trusted_Connection=true;");
-            }
-
-            base.OnConfiguring(optionsBuilder); 
-        }
+        
         
     }
 }

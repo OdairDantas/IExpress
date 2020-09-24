@@ -36,7 +36,7 @@ namespace IExpress.Pagamentos.Infrastructure.IOC
 
             //Pagamento
 
-            services.AddScoped<IPagamentoCartaoRepository, PagamentoCartaoRepository>();
+            services.AddScoped<IPagamentoRepository, PagamentoRepository>();
             services.AddScoped<IPagamentoAppService, PagamentoAppService>();
             services.AddScoped<IPagamentoCartaoFacade, PagamentoCartaoFacade>();
             services.AddScoped<IPayPalGateway, PayPalGateway>();

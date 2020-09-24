@@ -4,7 +4,7 @@ using System;
 
 namespace IExpress.Pagamentos.Domain.DomainObjects
 {
-    public class Pagamento : Entity
+    public class Pagamento : Entity, IAggregateRoot
     {
         public Pagamento(Guid pedidoId, decimal valor)
         {

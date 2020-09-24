@@ -5,11 +5,11 @@ using IExpress.Pagamentos.Infrastructure.Data.Contexts;
 
 namespace IExpress.Pagamentos.Infrastructure.Data.Repositories
 {
-    public class PagamentoCartaoRepository : Repository<PagamentoCartao>,  IPagamentoCartaoRepository
+    public class PagamentoRepository : Repository<Pagamento>,  IPagamentoRepository
     {
         private readonly PagamentoContext _context;
 
-        public PagamentoCartaoRepository(PagamentoContext context) :base(context)
+        public PagamentoRepository(PagamentoContext context) :base(context)
         {
             _context = context;
         }
@@ -18,7 +18,5 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Repositories
         {
             _context.Transacoes.Add(transacao);
         }
-
-        
     }
 }
