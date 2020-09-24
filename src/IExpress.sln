@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IExpress.OAuth.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IExpress.API.Pagamentos", "IExpress.API.Pagamentos\IExpress.API.Pagamentos.csproj", "{002931CF-AB3B-4430-A40F-75B7F4FC6D66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IExpress.API.OAuth", "IExpress.API.OAuth\IExpress.API.OAuth.csproj", "{F34A3970-AF96-47CE-822E-DE1C4536D13C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{002931CF-AB3B-4430-A40F-75B7F4FC6D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002931CF-AB3B-4430-A40F-75B7F4FC6D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{002931CF-AB3B-4430-A40F-75B7F4FC6D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34A3970-AF96-47CE-822E-DE1C4536D13C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34A3970-AF96-47CE-822E-DE1C4536D13C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34A3970-AF96-47CE-822E-DE1C4536D13C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34A3970-AF96-47CE-822E-DE1C4536D13C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{F2FB74F1-7314-41B2-8F3E-878886AD12C6} = {C01AB5DE-B549-4C70-9892-46E3E7BE555E}
 		{9EBDAAF5-FEEF-445F-A4DA-6B0BA97398ED} = {C01AB5DE-B549-4C70-9892-46E3E7BE555E}
 		{002931CF-AB3B-4430-A40F-75B7F4FC6D66} = {B6AE73E0-FE61-4236-890D-5418079B429F}
+		{F34A3970-AF96-47CE-822E-DE1C4536D13C} = {B6AE73E0-FE61-4236-890D-5418079B429F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C911B31B-0586-4894-877C-856F6D9ACBC6}
