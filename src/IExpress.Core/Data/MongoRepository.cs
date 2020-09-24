@@ -11,17 +11,13 @@ namespace IExpress.Core.Data
     public class MongoRepository<T> : IMongoRepository<T> where T : Entity
     {
 
-        private readonly MongoDbContext<T> _context;
         private readonly IMongoCollection<T> _repo;
 
         public MongoRepository(MongoDbContext<T> context)
         {
-            _context = context;
-
-            _repo = _context.Collection;
+            _repo = context.Collection;
         }
 
-        public IUnitOfWork UnitOfWork => throw new NotImplementedException();
 
         public async Task Adicionar(T entity)
         {
