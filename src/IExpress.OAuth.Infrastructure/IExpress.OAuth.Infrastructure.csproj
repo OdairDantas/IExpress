@@ -12,4 +12,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Mappings\" />
+    <Folder Include="Data\Migrations\" />
+    <Folder Include="Data\Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IExpress.OAuth.Domain\IExpress.OAuth.Domain.csproj" />
+  </ItemGroup>
 </Project>

@@ -46,8 +46,4 @@
     <ProjectReference Include="..\IExpress.Pagamentos.Domain\IExpress.Pagamentos.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

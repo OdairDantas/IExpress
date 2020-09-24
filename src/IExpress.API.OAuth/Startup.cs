@@ -1,3 +1,4 @@
+using IExpress.OAuth.Infrastructure.IOC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace IExpress.API.OAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.DependencyResolve(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

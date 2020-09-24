@@ -8,5 +8,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IExpress.OAuth.Infrastructure\IExpress.OAuth.Infrastructure.csproj" />
+  </ItemGroup>
+
 
 </Project>
