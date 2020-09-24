@@ -10,7 +10,7 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Mappings
         {
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Valor).IsRequired();
+            builder.Property(c => c.Valor).HasColumnType("decimal(5, 2)").IsRequired();
            
 
             // 1 : 1 => Pagamento : Transacao

@@ -16,12 +16,14 @@ using IExpress.Pagamentos.Domain.Repositories;
 using IExpress.Pagamentos.Infrastructure.Data.Repositories;
 using IExpress.Pagamentos.Application.AutoMapper;
 using AutoMapper;
+using Microsoft.AspNetCore.Builder;
+
 namespace IExpress.Pagamentos.Infrastructure.IOC
 {
     public static class DependencyInjection
     {
 
-        public static IServiceCollection DependencyResolve(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection DependencyResolve(this IServiceCollection services, IConfiguration configuration)
         {
 
             // Mediator
@@ -45,9 +47,20 @@ namespace IExpress.Pagamentos.Infrastructure.IOC
 
             services.AddScoped<INotificationHandler<PedidoEstoqueConfirmadoEvent>, PagamentoEventHandler>();
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
-            services.AddDbContext<PagamentoContext>(options =>options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PagamentoContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             return services;
+        }
+
+        public static IApplicationBuilder MigrationResolve(this IApplicationBuilder app)
+        {
+
+            using (var migrationSvcScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                migrationSvcScope.ServiceProvider.GetService<PagamentoContext>().Database.Migrate();
+            }
+
+            return app;
         }
     }
 }

@@ -44,6 +44,9 @@ namespace IExpress.WebApps.API.Pagamentos
             {
                 endpoints.MapControllers();
             });
+
+            app.MigrationResolve();
+
         }
     }
 }
