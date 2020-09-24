@@ -50,7 +50,7 @@ namespace IExpress.Core.Data
             return await _repo.Where(predicate).AsNoTracking().ToListAsync();
         }
 
-        protected void Dispose()
+        public void Dispose()
         {
             _context?.Dispose();
         }

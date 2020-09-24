@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace IExpress.WebApps.API.Pagamentos
+namespace IExpress.API.Pagamentos
 {
     public class Startup
     {

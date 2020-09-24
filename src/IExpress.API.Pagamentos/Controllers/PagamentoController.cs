@@ -3,7 +3,7 @@ using IExpress.Pagamentos.Domain.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace IExpress.WebApps.API.Pagamentos.Controllers
+namespace IExpress.API.Pagamentos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

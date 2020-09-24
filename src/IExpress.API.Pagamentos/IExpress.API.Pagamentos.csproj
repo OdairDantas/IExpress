@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>IExpress.WebApps.API.Pagamentos</AssemblyName>
-    <RootNamespace>IExpress.WebApps.API.Pagamentos</RootNamespace>
+    <AssemblyName>IExpress.API.Pagamentos</AssemblyName>
+    <RootNamespace>IExpress.API.Pagamentos</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
