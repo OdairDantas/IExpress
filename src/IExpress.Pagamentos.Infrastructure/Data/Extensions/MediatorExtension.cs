@@ -8,7 +8,7 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Extensions
 {
     public static class MediatorExtension
     {
-        public static async Task PublicarEventos(this IMediatorHandler mediator, PagamentoContext ctx)
+        public static async Task PublicarEventos(this IMediatorHandler mediator, BaseDbContext ctx)
         {
             var domainEntities = ctx.ChangeTracker
                 .Entries<Entity>()

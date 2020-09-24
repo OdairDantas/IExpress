@@ -12,11 +12,9 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
         {
 
         }
-        public IMediatorHandler _bus { get; set; }
 
-        public IdentityContext(DbContextOptions<IdentityContext> options, IMediatorHandler rebusHandler) : base(options)
+        public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
         {
-            _bus = rebusHandler ?? throw new ArgumentNullException(nameof(rebusHandler));
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

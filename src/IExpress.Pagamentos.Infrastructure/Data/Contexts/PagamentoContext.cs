@@ -1,34 +1,31 @@
 ﻿using IExpress.Core.Communication.Mediator;
 using Microsoft.EntityFrameworkCore;
-using IExpress.Core.Data;
-using IExpress.Core.Messages;
 using IExpress.Pagamentos.Domain.DomainObjects;
-using IExpress.Pagamentos.Infrastructure.Data.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
 {
-    public class PagamentoContext : DbContext, IUnitOfWork
+    public class PagamentoContext : BaseDbContext
     {
-        private readonly IMediatorHandler _mediatorHandler;
+        private readonly IMediatorHandler _mediator;
+
 
         public PagamentoContext()
         {
 
         }
-        public PagamentoContext(DbContextOptions<PagamentoContext> options, IMediatorHandler rebusHandler)
-            : base(options)
+        public PagamentoContext(DbContextOptions<PagamentoContext> options, IMediatorHandler mediator): base(options, mediator)
         {
-            _mediatorHandler = rebusHandler ?? throw new ArgumentNullException(nameof(rebusHandler));
+            _mediator = mediator;
         }
 
         public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<Transacao> Transacoes { get; set; }
 
 
-        public async Task<bool> Commit()
+        public override async Task<bool> Commit()
         {
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
             {
@@ -43,10 +40,7 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
                 }
             }
 
-            var sucesso = await base.SaveChangesAsync() > 0;
-            if (sucesso) await _mediatorHandler.PublicarEventos(this);
-
-            return sucesso;
+            return await base.Commit();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -58,14 +52,6 @@ namespace IExpress.Pagamentos.Infrastructure.Data.Contexts
 
             base.OnConfiguring(optionsBuilder); 
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Ignore<Event>();
-
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PagamentoContext).Assembly);
-
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
-            base.OnModelCreating(modelBuilder);
-        }
+        
     }
 }
