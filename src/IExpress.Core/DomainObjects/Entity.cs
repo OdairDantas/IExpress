@@ -43,7 +43,7 @@ namespace IExpress.Core.DomainObjects
             return Id.Equals(compareTo.Id);
         }
 
-        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S3875:\"operator==\" should not be overloaded on reference types", Justification = "<Pendente>")]
         public static bool operator ==(Entity a, Entity b)
         {
             if (ReferenceEquals(a, null) && ReferenceEquals(b, null))

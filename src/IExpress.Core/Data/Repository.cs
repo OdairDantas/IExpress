@@ -23,12 +23,12 @@ namespace IExpress.Core.Data
         }
         public async Task Adicionar(T entity)
         {
-            _repo.Add(entity);
+           await Task.Run(()=> _repo.Add(entity));
         }
 
         public async Task Atualizar(T entity)
         {
-            _repo.Update(entity);
+          await Task.Run(()=>   _repo.Update(entity));
         }
 
         public async Task<T> ObterPorId(Guid id)
@@ -50,7 +50,7 @@ namespace IExpress.Core.Data
             return await _repo.Where(predicate).AsNoTracking().ToListAsync();
         }
 
-        public void Dispose()
+        protected void Dispose()
         {
             _context?.Dispose();
         }
