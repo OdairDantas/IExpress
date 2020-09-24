@@ -17,6 +17,12 @@ using IExpress.Pagamentos.Infrastructure.Data.Repositories;
 using IExpress.Pagamentos.Application.AutoMapper;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
+using MongoDB.Bson.Serialization;
+using IExpress.Core.Data;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson;
+using System;
+using IExpress.Core.Config;
 
 namespace IExpress.Pagamentos.Infrastructure.IOC
 {
@@ -25,6 +31,16 @@ namespace IExpress.Pagamentos.Infrastructure.IOC
 
         public static IServiceCollection DependencyResolve(this IServiceCollection services, IConfiguration configuration)
         {
+
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            services.AddScoped(typeof(MongoDbContext<>));
+
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+
+            MongoConfig.ConnectionString = configuration.GetSection("MongoConnection:ConnectionString").Value;
+            MongoConfig.DatabaseName = configuration.GetSection("MongoConnection:Database").Value;
+            MongoConfig.IsSSL = Convert.ToBoolean(configuration.GetSection("MongoConnection:IsSSL").Value);
+
 
             // Mediator
             services.AddScoped<IMediatorHandler, MediatorHandler>();
