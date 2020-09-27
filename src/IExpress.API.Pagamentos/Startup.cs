@@ -20,6 +20,7 @@ namespace IExpress.API.Pagamentos
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
             services.AddMediatR(typeof(Startup));
             services.SwaggerAdd();

@@ -6,5 +6,6 @@ namespace IExpress.OAuth.Domain.DomainObjects
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
     }
 }

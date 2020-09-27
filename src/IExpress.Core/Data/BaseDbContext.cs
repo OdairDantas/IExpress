@@ -41,26 +41,7 @@ namespace IExpress.Core.Data
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
             base.OnModelCreating(modelBuilder);
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured && !string.IsNullOrEmpty(_connectionString))
-            {
-                optionsBuilder
-                    .UseSqlServer
-                    (_connectionString,
-                    p => p.
-                    EnableRetryOnFailure
-                    (
-                        maxRetryCount: 3,
-                        maxRetryDelay: TimeSpan.FromSeconds(10),
-                        errorNumbersToAdd: null
-                     )
-                    .MigrationsHistoryTable("Migracoes")
-                    );
-            }
-
-            base.OnConfiguring(optionsBuilder);
-        }
+        
 
     }
 }

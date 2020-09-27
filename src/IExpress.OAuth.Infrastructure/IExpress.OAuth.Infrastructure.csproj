@@ -1,23 +1,52 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20200927164738_AddIdentity.cs" />
+    <Compile Remove="Data\Migrations\20200927164738_AddIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200927165746_AddIdentity.cs" />
+    <Compile Remove="Data\Migrations\20200927165746_AddIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200927170553_AddIdentity.cs" />
+    <Compile Remove="Data\Migrations\20200927170553_AddIdentity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200927171832_AddIdetity.cs" />
+    <Compile Remove="Data\Migrations\20200927171832_AddIdetity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200927174535_AddIdetity.cs" />
+    <Compile Remove="Data\Migrations\20200927174535_AddIdetity.Designer.cs" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
     <PackageReference Include="dotnet-framework-sonarscanner" Version="4.10.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MSBuild.SonarQube.Runner.Tool" Version="4.8.0" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.12.0.21095">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\Mappings\" />
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Data\Repositories\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventSourcing\EventSourcing.csproj" />
+    <ProjectReference Include="..\IExpress.Core\IExpress.Core.csproj" />
+    <ProjectReference Include="..\IExpress.OAuth.Application\IExpress.OAuth.Application.csproj" />
     <ProjectReference Include="..\IExpress.OAuth.Domain\IExpress.OAuth.Domain.csproj" />
   </ItemGroup>
 </Project>

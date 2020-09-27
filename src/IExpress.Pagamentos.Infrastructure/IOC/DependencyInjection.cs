@@ -63,7 +63,21 @@ namespace IExpress.Pagamentos.Infrastructure.IOC
 
             services.AddScoped<INotificationHandler<PedidoEstoqueConfirmadoEvent>, PagamentoEventHandler>();
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
-            services.AddDbContext<PagamentoContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<PagamentoContext>
+            (
+                options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    p => p.
+                    EnableRetryOnFailure
+                    (
+                        maxRetryCount: 3,
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorNumbersToAdd: null
+                     )
+                    .MigrationsHistoryTable("Migracoes")
+                    )
+            
+            
+            );
 
             return services;
         }

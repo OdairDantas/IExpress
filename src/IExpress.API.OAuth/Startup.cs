@@ -1,4 +1,6 @@
 using IExpress.OAuth.Infrastructure.IOC;
+using IExpress.OAuth.Infrastructure.Swagger;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,8 +20,10 @@ namespace IExpress.API.OAuth
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(typeof(Startup));
             services.AddControllers();
             services.DependencyResolve(Configuration);
+            services.SwaggerAdd();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -28,13 +32,13 @@ namespace IExpress.API.OAuth
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.SwaggerAdd();
             app.UseHttpsRedirection();
-
+            
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
