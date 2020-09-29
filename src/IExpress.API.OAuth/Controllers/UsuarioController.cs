@@ -2,8 +2,6 @@
 using IExpress.Core.Communication.Mediator;
 using IExpress.OAuth.Application.Commands;
 using IExpress.OAuth.Application.ViewModels;
-using IExpress.OAuth.Domain.DomainObjects;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

@@ -1,6 +1,8 @@
-﻿using IExpress.OAuth.Domain.DomainObjects;
+﻿using AutoMapper;
+using IExpress.OAuth.Domain.DomainObjects;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,24 +11,18 @@ namespace IExpress.OAuth.Application.Commands
     public class UsuarioCommandHandler : IRequestHandler<AdicionarUsuarioCommand, bool>
     {
         private readonly UserManager<Usuario> _userManager;
-        private readonly SignInManager<Usuario> _signInManager;
-        public UsuarioCommandHandler(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager)
+        private readonly IMapper _mapper;
+        public UsuarioCommandHandler(IMapper mapper, UserManager<Usuario> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
+            _mapper = mapper;
         }
         public async Task<bool> Handle(AdicionarUsuarioCommand message, CancellationToken cancellationToken)
         {
-            var novoUsuario = new Usuario()
-            {
-                UserName = message.Nome,
-                Latitude = message.Latitude,
-                Longitude = message.Longitude,
-                Email = message.Email,
-                EmailConfirmed = true
 
-            };
-            var retorno = await _userManager.CreateAsync(novoUsuario, message.Password);
+            var usuario = _mapper.Map<Usuario>(message);
+            usuario.EmailConfirmed = true;
+            var retorno = await _userManager.CreateAsync(usuario, message.Password);
             return retorno.Succeeded;
         }
     }
