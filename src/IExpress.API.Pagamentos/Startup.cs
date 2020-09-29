@@ -33,7 +33,6 @@ namespace IExpress.API.Pagamentos
             {
                 app.UseDeveloperExceptionPage();
             }
-           
             app.SwaggerAdd();
             app.UseHttpsRedirection();
 

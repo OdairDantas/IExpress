@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using EventSourcing;
 using IExpress.Core.Communication.Mediator;
+using IExpress.Core.Config;
+using IExpress.Core.Data;
 using IExpress.Core.Data.EventSourcing;
 using IExpress.Core.Messages.CommonMessages.Notifications;
 using IExpress.OAuth.Application.AutoMapper;
@@ -12,7 +14,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using System;
+using Serilog;
 
 namespace IExpress.OAuth.Infrastructure.IOC
 {
@@ -20,6 +26,15 @@ namespace IExpress.OAuth.Infrastructure.IOC
     {
         public static IServiceCollection DependencyResolve(this IServiceCollection services, IConfiguration configuration)
         {
+
+            //MongoDB
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            services.AddScoped(typeof(MongoDbContext<>));
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+            MongoConfig.ConnectionString = configuration.GetSection("MongoConnection:ConnectionString").Value;
+            MongoConfig.DatabaseName = configuration.GetSection("MongoConnection:Database").Value;
+            MongoConfig.IsSSL = Convert.ToBoolean(configuration.GetSection("MongoConnection:IsSSL").Value);
+
             // Mediator
             services.AddScoped<IMediatorHandler, MediatorHandler>();
 
